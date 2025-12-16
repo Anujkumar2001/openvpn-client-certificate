@@ -1,0 +1,9 @@
+# CA files (keep secret!)
+ca.crt
+ca.key
+
+# Node modules
+node_modules/
+
+# Environment files
+.env

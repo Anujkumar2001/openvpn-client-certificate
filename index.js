@@ -5,9 +5,11 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Load CA credentials from OpenVPN server
-const caCertPem = fs.readFileSync('./ca.crt', 'utf8');
-const caKeyPem = fs.readFileSync('./ca.key', 'utf8');
+// Load CA credentials
+// Option 1: From environment variables (production)
+// Option 2: From files (development)
+const caCertPem = process.env.CA_CERT || fs.readFileSync('./ca.crt', 'utf8');
+const caKeyPem = process.env.CA_KEY || fs.readFileSync('./ca.key', 'utf8');
 
 const caCert = forge.pki.certificateFromPem(caCertPem);
 const caKey = forge.pki.privateKeyFromPem(caKeyPem);
